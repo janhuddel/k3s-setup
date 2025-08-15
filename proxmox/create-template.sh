@@ -68,8 +68,8 @@ qm set $TMPL_ID --serial0 socket --vga serial0
 qm set $TMPL_ID --ciuser "$CI_USER" --cipassword "$TMPL_PASSWORD"
 qm set $TMPL_ID --sshkeys .ssh/id_rsa.pub
 
-# Snippet zuordnen
-qm set $TMPL_ID --cicustom "user=${SNIPPETS_STORAGE}:snippets/$(basename "$SNIPPET_FILE")"
+# Snippet als VENDOR-DATA einbinden (überschreibt NICHT die User-Data)
+qm set "$TMPL_ID" --cicustom "vendor=${SNIPPETS_STORAGE}:snippets/$(basename "$SNIPPET_FILE")"
 
 # In Template umwandeln
 qm template $TMPL_ID
