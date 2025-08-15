@@ -1,0 +1,12 @@
+#cloud-config
+package_update: true
+packages:
+  - python3
+  - python3-apt
+  - qemu-guest-agent
+
+runcmd:
+  # Optional: 'python' auf python3 verlinken, falls nötig
+  - bash -lc 'if [ -x /usr/bin/python3 ] && [ ! -e /usr/bin/python ]; then ln -s /usr/bin/python3 /usr/bin/python; fi'
+  # qemu-guest-agent aktivieren und starten
+  - systemctl enable --now qemu-guest-agent
